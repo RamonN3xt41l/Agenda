@@ -8,8 +8,8 @@ agenda = {
 while true
   puts ""
   puts "1 - Add contact"
-  puts "2 - update contact"
-  puts "3 - Show all contact"
+  puts "2 - Show all contacts"
+  puts "3 - update contact"
   puts "4 - Delete contact"
 
   print "Choose one of the following options "
@@ -29,7 +29,13 @@ while true
       puts "the contact already exists in your agenda"
     end
   when '2'
-    puts "What contact would you like to update?"
+    agenda.each do |nome, phone_number|
+      puts "Contact name: #{nome} - Contact phone number: #{phone_number}"
+    end
+  when '3'
+    puts "What contact would you like to update?\"
+Please keep in mind this is case sensitive"
+
     nome = gets.chomp
     if agenda[nome.to_sym].nil?
       puts "that contact is not on your agenda"
@@ -37,14 +43,11 @@ while true
       puts "What is the new phone number?"
       phone_number = gets.chomp
       agenda[nome.to_sym] = phone_number.to_i
-      puts "the contact #{nome}'s phone number has been updated, the new phone number is #{phone_number}."
-    end
-  when '3'
-    agenda.each do |nome, phone_number|
-      puts "Contact name: #{nome} - Contact phone number: #{phone_number}"
+      puts "the #{nome}'s phone number has been updated, the new phone number is #{phone_number}."
     end
   when '4'
-    puts "Which contact would you like to delete?"
+    puts "Which contact would you like to delete?\"
+Please keep in mind this is case sensitive"
     nome = gets.chomp
     if agenda[nome.to_sym].nil?
       puts "The contact you are trying to delete doesnt exists"
